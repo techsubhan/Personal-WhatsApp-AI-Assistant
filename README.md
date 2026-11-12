@@ -160,7 +160,7 @@ For complete dashboard configuration, read [frontend/README.md](frontend/README.
 
 **Muhammad Subhan**
 
-GitHub: [@techsubhan](https://github.com/techsubhan)
+GitHub: https://github.com/techsubhan
 
 ---
 
