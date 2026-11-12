@@ -1,0 +1,47 @@
+# =============================================================================
+# requirements.txt - WhatsApp AI Assistant
+# Target runtime: Python 3.14.4 on Ubuntu 26.04 LTS
+# =============================================================================
+# Version selection notes (verified against each project's published Python
+# 3.14 support as of mid-2026):
+#
+#   - fastapi, starlette, pydantic, pydantic-core, uvicorn, requests,
+#     python-dotenv, apscheduler: all publish official Python 3.14 support
+#     (either cp314 wheels or an explicit "Programming Language :: Python :: 3.14"
+#     classifier).
+#   - sqlalchemy: version 2.0.41+ added Python 3.14 support; 2.0.51 (the
+#     current 2.0.x stable release) ships prebuilt cp314 wheels. We pin a
+#     minimum of 2.0.41 rather than an exact version so pip can resolve the
+#     latest compatible 2.0.x (or newer) release.
+#   - httpx/h11 were deliberately AVOIDED for the synchronous HTTP calls in
+#     this project (WhatsApp Cloud API + OpenRouter) because, at the time
+#     this project was generated, they lagged behind on official Python 3.14
+#     wheel availability compared to `requests`. `requests` is used instead
+#     for all outbound HTTP calls, which keeps the dependency tree simpler
+#     and avoids any asyncio/greenlet edge cases entirely.
+#
+# No exact version pins are used unless required for Python 3.14
+# compatibility, per project specification. Run:
+#     pip install -r requirements.txt
+# on a clean Python 3.14 environment.
+# =============================================================================
+
+# --- Web framework & server --------------------------------------------------
+fastapi>=0.115
+uvicorn[standard]>=0.30
+
+# --- Environment configuration ----------------------------------------------
+python-dotenv>=1.0
+
+# --- Database / ORM ----------------------------------------------------------
+SQLAlchemy>=2.0.41
+
+# --- HTTP client (used for OpenRouter + WhatsApp Cloud API calls) -----------
+requests>=2.32
+
+# --- Background scheduling (human override expiry, approval timeout,
+#     spam mute expiry, working-hours transitions) ---------------------------
+APScheduler>=3.11
+
+# --- Data validation (used alongside FastAPI request/response models) ------
+pydantic>=2.9

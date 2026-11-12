@@ -1,0 +1,15 @@
+⚠️ Approval needed (request #{request_id})
+
+Contact: {contact_name} ({contact_wa_id})
+Reason: {reason}
+
+Their message:
+"{user_message}"
+
+This message appears to request sensitive information, so I have not replied automatically.
+
+Reply with:
+/approve {request_id}  - to let me answer normally
+/reject {request_id}   - to have me politely decline
+
+This request will automatically expire in {timeout_minutes} minutes if you don't respond.
